@@ -1,9 +1,10 @@
 {
   "name": "be-groovy-moovies",
   "version": "1.0.0",
-  "description": "\"BE using Node,Ecpress,Postgres\"",
+  "description": "\"BE using Node,Express,Postgres\"",
   "main": "index.js",
   "scripts": {
+    "start": " node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "GOECHA",

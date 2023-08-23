@@ -1,3 +1,5 @@
+
+
 // Entry Point of the API Server
 
 const express = require('express');
@@ -9,9 +11,10 @@ function exported by the express module.
 const app = express();
 const Pool = require('pg').Pool;
 
+
 const pool = new Pool({
-	connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-});
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+  })
 
 
 /* To handle the HTTP Methods Body Parser
@@ -86,3 +89,5 @@ app.get('/getMovies', (req, res, next) => {
             res.status(500).send('Error fetching movies');
         });
 });
+
+module.exports = pool
