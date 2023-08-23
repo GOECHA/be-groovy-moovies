@@ -1,5 +1,5 @@
 const express = require('express');
-const { Pool } = require('pg');
+const Pool = require('pg').Pool;
 
 const app = express();
 const pool = new Pool({
@@ -50,4 +50,4 @@ const server = app.listen(process.env.PORT, () => {
 });
 
 
-module.exports = pool; // Export the Express app
+module.exports = app; // Export the Express app
