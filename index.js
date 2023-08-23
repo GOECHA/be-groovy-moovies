@@ -10,12 +10,7 @@ const app = express();
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-	user: 'postgres',
-	host: 'localhost',
-	database: 'gfgbackend',
-	password: 'postgres',
-	dialect: 'postgres',
-	port: 5432
+	connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
 
 
