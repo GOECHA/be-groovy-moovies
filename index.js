@@ -33,6 +33,11 @@ pool.connect((err, client, release) => {
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the Be Groovy Moovies API');
+  });  
+
+
 app.get('/getMovies', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM addMovies');
