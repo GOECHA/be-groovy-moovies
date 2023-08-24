@@ -1,10 +1,35 @@
 const express = require('express');
+require('dotenv').config()
+const app = express();
+
 const Pool = require('pg').Pool;
 
-const app = express();
+
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
+
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+
+pool.connect((err, client, release) => {
+    if (err) {
+        return console.error(
+            'Error acquiring client', err.stack)
+    }
+    client.query('SELECT NOW()', (err, result) => {
+        release()
+        if (err) {
+            return console.error(
+                'Error executing query', err.stack)
+        }
+        console.log("Connected to Database !")
+    })
+})
+
+
 
 app.use(express.json());
 
@@ -44,10 +69,7 @@ app.post('/addMovies', async (req, res) => {
     }
 });
 
-console.log('Starting server...');
-const server = app.listen(process.env.PORT, () => {
-    console.log('Server started on port 3000');
-});
+const server = app.listen(process.env.PORT, function () {
+    console.log("Server is running on port 5000")
+})
 
-
-module.exports = app; // Export the Express app
